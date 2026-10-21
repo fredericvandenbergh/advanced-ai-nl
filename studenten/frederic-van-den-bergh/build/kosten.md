@@ -18,6 +18,20 @@ Datum: 14 oktober 2026. Koers: 1 dollar = 0,90 euro (aanname).
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | Haiku (prijs Haiku 4.5: 1 / 5 dollar per miljoen) | ± 27.300 | 29.202 | 1.885 | 460 (waarvan 353 denkwerk) | ± 0,0042 dollar, ± 0,0038 euro | 20 runs: ± 0,08 dollar, ± 0,08 euro | 200 runs: ± 0,84 dollar, ± 0,76 euro | 20.000 runs: ± 84 dollar, ± 76 euro |
 
+## Gecorrigeerd in week 5
+
+De tabel hierboven rekende met de prijs van Haiku 4.5 (1 / 5 dollar per miljoen). Het model was `claude-haiku-5-5`, dus de prijs is die van Haiku 5.5: 0,10 dollar per miljoen input, 0,50 dollar per miljoen output (tabel van 21 oktober 2026, geldt tot 100.000 tokens per vraag; deze run zit daar ruim onder).
+
+- Output: 460 × 0,50 ÷ 1.000.000 = 0,00023 dollar
+- Input, jouw deel: 1.885 tokens. Cache lezen kost 0,01 per miljoen, cache schrijven 0,125 tot 0,20, een nieuwe token 0,10. Zonder de uitsplitsing per soort reken ik met de hoogste prijs (0,10): 1.885 × 0,10 ÷ 1.000.000 = 0,00019 dollar. Dat is een bovengrens.
+- Kost per run: 0,00023 + 0,00019 = **± 0,00042 dollar, ± 0,00038 euro** (bovengrens)
+- Per maand, 20 runs: **± 0,0084 dollar, ± 0,0076 euro**
+- Per jaar, 240 runs: **± 0,10 dollar, ± 0,09 euro**
+
+Oude regel (Haiku 4.5, 0,0042 dollar per run, 0,91 euro per jaar): gecorrigeerd in week 5. Die getallen gelden niet meer.
+
+Effect op de waarde: de tool kost bijna niets. Het netto blijft ± 1.400 euro per jaar (1.400 − 0,09). Het kantelpunt van het nakijken verandert niet.
+
 ## Volume
 
 - Echte plek: het transportbedrijf van mijn vader (± 30 medewerkers).
@@ -47,7 +61,8 @@ Rekenwerk:
 
 ## Open punten
 
-- De prijs van `claude-haiku-5-5` is niet bevestigd. De kost die de tool zelf rapporteerde (0,0028 dollar voor de basisrun) past bij prijzen die ongeveer tien keer lager zijn dan in de tabel. Aan de docent vragen welke prijs telt.
+- De prijs van Haiku 5.5 is nu gebruikt uit de tabel van de README (21 oktober 2026). Open: de uitsplitsing van de 1.885 input-tokens per soort (nieuw, cache schrijven, cache lezen) om de bovengrens exact te maken. Die staat in de JSON-output van `claude -p --output-format json` (velden `cache_creation_input_tokens` en `cache_read_input_tokens`).
+- De kost die de tool zelf rapporteerde (0,0028 dollar voor de basisrun) is gebaseerd op de Opus-prijs. Die cijfers gebruik ik niet.
 - Meerdere runs draaien en het gemiddelde nemen.
 - Het volume (4 à 5 meldingen per week) is mijn eigen schatting, nog na te vragen bij mijn vader. De uurkost van 100 euro heeft hij bevestigd.
 
@@ -64,8 +79,8 @@ Alle tijden zijn realistische schattingen van mezelf (Frédéric), geen metingen
 | Uren gewonnen | 15,75 min per week · 70 min per maand · **14 u per jaar** | |
 | Uurkost | **100 euro** | bevestigd door mijn vader (zaakvoerder): wat een uur van hem het bedrijf kost |
 | Waarde | 14 × 100 = **1.400 euro per jaar** | |
-| Kost van de tool | 240 × 0,0042 dollar = ± 1 dollar = **± 0,91 euro per jaar** | gemeten, prijs Haiku 4.5 uit de tabel |
-| Netto | **± 1.399 euro per jaar** | |
+| Kost van de tool | 240 × 0,0042 dollar = ± 1 dollar = ~~± 0,91 euro per jaar~~ (gecorrigeerd in week 5, zie hierboven): **± 0,09 euro per jaar** | gemeten, prijs Haiku 5.5 uit de tabel van 21 oktober 2026 |
+| Netto | **± 1.400 euro per jaar** (was ± 1.399, gecorrigeerd in week 5) | |
 
 ## Mijn zwakste cijfer: het nakijken van 1 minuut
 
