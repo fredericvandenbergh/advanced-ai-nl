@@ -1,3 +1,11 @@
+# Foutmarge, 21 oktober 2026
+
+Model: claude-haiku-5-5. n = 10, 3 runs per versie. Zelfde inputs voor beide.
+
+Mijn claim: "De lucht-blazen-regel verbetert de score."
+
+Bevestigd of ingetrokken: **ingetrokken**, want de bereiken overlappen. v1 haalt 4 tot 5 en v2 haalt 5 tot 6. De laagste score van v2 (5) is niet hoger dan de hoogste van v1 (5). Het verschil valt binnen de foutmarge. De gemiddelde score van v2 is hoger (5,7 tegen 4,3), maar met drie runs is dat niet aangetoond. Dat is een eerlijk niet bewezen, geen bewijs van slechter.
+
 # Foutmarge — prompt v1 tegen v2
 
 Gedraaid met de foutmargetest van week 5. Dezelfde tien inputs uit `test-set.md`, drie runs per versie, dus 60 runs in totaal.
