@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard meldingen chauffeurs</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --text: #1d2330;
+    --muted: #5b6474;
+    --line: #dfe3ea;
+    --ok: #1d7a46;
+    --warn: #a35d00;
+    --accent: #2456a6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151b;
+      --card: #1b1f28;
+      --text: #e8ebf0;
+      --muted: #9aa3b2;
+      --line: #2c3340;
+      --ok: #4cc27f;
+      --warn: #e7a33c;
+      --accent: #7aa7ff;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151b;
+    --card: #1b1f28;
+    --text: #e8ebf0;
+    --muted: #9aa3b2;
+    --line: #2c3340;
+    --ok: #4cc27f;
+    --warn: #e7a33c;
+    --accent: #7aa7ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 16px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  main { max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  h2 { font-size: 1.15rem; margin: 0 0 12px; }
+  .sub { color: var(--muted); margin: 0 0 16px; font-size: 0.95rem; }
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .big { font-size: 1.6rem; font-weight: 700; }
+  .label { color: var(--muted); font-size: 0.9rem; }
+  .verdict { font-weight: 700; color: var(--warn); }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 560px) { .grid { grid-template-columns: 1fr 1fr; } }
+  .tile { border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td.num, th.num { text-align: right; white-space: nowrap; }
+  .muted { color: var(--muted); }
+  .note { font-size: 0.9rem; color: var(--muted); margin: 10px 0 0; }
+  .todo { color: var(--warn); font-style: italic; }
+  ul { padding-left: 20px; margin: 8px 0; }
+  li { margin-bottom: 6px; }
+  footer { color: var(--muted); font-size: 0.85rem; text-align: center; padding: 8px 0 24px; }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>Meldingen van chauffeurs ordenen</h1>
+  <p class="sub">Dashboard week 5 · 21 oktober 2026 · tool: Haiku 5.5 · alle cijfers uit mijn eigen bestanden in <code>build/</code></p>
+
+  <section>
+    <h2>1. Mijn score en foutmarge</h2>
+    <div class="grid">
+      <div class="tile">
+        <div class="label">Huidige prompt (v2), laatste versie</div>
+        <div class="big">5 tot 6 op 10</div>
+        <div class="muted">min–max, n = 10 inputs, 3 runs</div>
+        <div class="muted">runs: 6 · 6 · 5</div>
+      </div>
+      <div class="tile">
+        <div class="label">Vorige prompt (v1)</div>
+        <div class="big">4 tot 5 op 10</div>
+        <div class="muted">min–max, n = 10 inputs, 3 runs</div>
+        <div class="muted">runs: 4 · 4 · 5</div>
+      </div>
+    </div>
+    <p class="note">Zelfde inputs voor beide versies. Model: claude-haiku-5-5.</p>
+    <p><strong>Mijn claim:</strong> "De lucht-blazen-regel verbetert de score."<br>
+    <span class="verdict">Ingetrokken.</span> De bereiken overlappen op 5. Het gemiddelde van v2 ligt hoger (5,7 tegen 4,3), maar met drie runs is dat niet aangetoond.</p>
+  </section>
+
+  <section>
+    <h2>2. Model en effort: drie setups</h2>
+    <p class="muted" style="margin-top:0">Gok vooraf: setup C (Opus) scoort het best, Sonnet is goed genoeg. Testset, één run per setup, effort medium voor alle drie.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Setup</th>
+            <th>Model</th>
+            <th class="num">Score (n = 10)</th>
+            <th class="num">Kost per run</th>
+            <th class="num">Per jaar (240 runs)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>A · standaard</td><td>Sonnet 5.5</td><td class="num">6/10</td><td class="num">$0,0059 (€0,0054)</td><td class="num">$1,42 (€1,29)</td></tr>
+          <tr><td>B · omlaag</td><td>Haiku 5.5</td><td class="num">5/10</td><td class="num">$0,0006 (€0,0005)</td><td class="num">$0,14 (€0,13)</td></tr>
+          <tr><td>C · omhoog</td><td>Opus 5.5</td><td class="num">7/10</td><td class="num">$0,0147 (€0,0133)</td><td class="num">$3,54 (€3,20)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Score C tegen A: één input verschil, binnen de foutmarge. Op score zijn A en C niet te onderscheiden. Eén run per setup is geen bewijs.</p>
+  </section>
+
+  <section>
+    <h2>3. Kost van mijn tool</h2>
+    <div class="grid">
+      <div class="tile">
+        <div class="label">Per run (Haiku 5.5, bovengrens)</div>
+        <div class="big">± €0,00038</div>
+        <div class="muted">± $0,00042</div>
+      </div>
+      <div class="tile">
+        <div class="label">Per jaar (240 runs)</div>
+        <div class="big">± €0,09</div>
+        <div class="muted">± $0,10</div>
+      </div>
+    </div>
+    <p class="note">Let op: de modeltest gaf voor Haiku ± $0,00058 per run (met gemiddeld 789 output-tokens). Dat is ± €0,13 per jaar. Het verschil is klein, maar het staat hier niet in de value chain.</p>
+  </section>
+
+  <section>
+    <h2>4. Value chain: netto per jaar</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Schakel</th><th class="num">Waarde</th><th>Bron</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1. Met de hand</td><td class="num">7 min per melding</td><td>mijn schatting (chauffeur 2 min, vader 5 min)</td></tr>
+          <tr><td>2. Met de tool</td><td class="num">3,5 min + herstel</td><td>mijn schatting; tool gemeten</td></tr>
+          <tr><td>Herstel</td><td class="num">1,0 min (score 5/10) · 0,8 min (6/10)</td><td>fout-deel uit score × 2 min per fout (mijn schatting)</td></tr>
+          <tr><td>3. Winst per melding</td><td class="num">2,5 min · 2,7 min</td><td>7 min − tool</td></tr>
+          <tr><td>4. Volume</td><td class="num">240 per jaar</td><td>bevestigd door mijn vader</td></tr>
+          <tr><td>5. Uren per jaar</td><td class="num">10 u · 10,8 u</td><td>winst × 240</td></tr>
+          <tr><td>6. Uurkost</td><td class="num">€150</td><td>bruto uurloon €100 × 1,5, uurloon zoals mijn vader het zelf zegt</td></tr>
+          <tr><td>7. Waarde per jaar</td><td class="num">€1.500 · €1.620</td><td>uren × €150</td></tr>
+          <tr><td>8. Kost van de tool</td><td class="num">± €0,09</td><td>zie onder 3</td></tr>
+          <tr><td><strong>Netto per jaar</strong></td><td class="num"><strong>± €1.500 · ± €1.620</strong></td><td>bereik bij score 5/10 en 6/10</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Het bereik komt uit mijn laagste (5/10) en hoogste (6/10) score. Netto per jaar in week 4 was ± €1.400, met een uurkost van €100 en zonder herstel.</p>
+  </section>
+
+  <section>
+    <h2>5. Mijn zwakste cijfer</h2>
+    <p>De 5 minuten die mijn vader met de hand besteedt. Die tijd heb ik niet gemeten, het is een schatting.</p>
+    <ul>
+      <li>Bij 5 minuten: ± €1.500 netto per jaar (score 5/10).</li>
+      <li>Bij 3 minuten: winst van 0,5 minuut per melding, ± €300 netto per jaar.</li>
+    </ul>
+    <p class="note">De foutmarge verschuift het netto met ± €120 per jaar. Dat weegt veel minder zwaar.</p>
+    <p class="note">De score komt van een testset met bewust moeilijke berichten. Het echte aandeel fouten kan lager of hoger zijn.</p>
+  </section>
+
+  <section>
+    <h2>6. Nog niet gemeten</h2>
+    <ul>
+      <li class="todo">Tijd met de hand per stap, gemeten (nu schatting).</li>
+      <li class="todo">Aandeel fouten op echte meldingen (nu alleen de testset).</li>
+      <li class="todo">Bron en bevestiging van de factor 1,5 voor de werkgeverskost van een bestuurder.</li>
+    </ul>
+  </section>
+
+  <footer>Advanced AI for Business · week 5</footer>
+
+</main>
+</body>
+</html>
