@@ -30,13 +30,13 @@ De tabel hierboven rekende met de prijs van Haiku 4.5 (1 / 5 dollar per miljoen)
 
 Oude regel (Haiku 4.5, 0,0042 dollar per run, 0,91 euro per jaar): gecorrigeerd in week 5. Die getallen gelden niet meer.
 
-Effect op de waarde: de tool kost bijna niets. Het netto blijft ± 1.400 euro per jaar (1.400 − 0,09). Het kantelpunt van het nakijken verandert niet.
+Effect op de waarde: de tool kost bijna niets. In deze berekening, zonder herstel, blijft het netto ± 2.100 euro per jaar (2.100 − 0,09). Het definitieve netto staat in `value-chain.md`: ± 1.500 tot 1.620 euro per jaar. Het kantelpunt van het nakijken verandert niet.
 
 ## Volume
 
 - Echte plek: het transportbedrijf van mijn vader (± 30 medewerkers).
 - 4 à 5 meldingen per week, dus ± 20 per maand (4,33 weken per maand) en ± 240 per jaar.
-- Bron: schatting van mezelf. Nog na te vragen bij mijn vader of de wagenparkbeheerder.
+- Bron: schatting van mezelf. Bevestigd door mijn vader (21 oktober 2026).
 - De tool zou op 3 computers en 2 gsm's komen. Dat verandert het aantal runs niet, het zijn dezelfde meldingen.
 
 ## Ander model, zelfde volume (20 runs per maand)
@@ -64,7 +64,7 @@ Rekenwerk:
 - De prijs van Haiku 5.5 is nu gebruikt uit de tabel van de README (21 oktober 2026). Open: de uitsplitsing van de 1.885 input-tokens per soort (nieuw, cache schrijven, cache lezen) om de bovengrens exact te maken. Die staat in de JSON-output van `claude -p --output-format json` (velden `cache_creation_input_tokens` en `cache_read_input_tokens`).
 - De kost die de tool zelf rapporteerde (0,0028 dollar voor de basisrun) is gebaseerd op de Opus-prijs. Die cijfers gebruik ik niet.
 - Meerdere runs draaien en het gemiddelde nemen.
-- Het volume (4 à 5 meldingen per week) is mijn eigen schatting, nog na te vragen bij mijn vader. De uurkost van 100 euro heeft hij bevestigd.
+- Het volume (4 à 5 meldingen per week) is mijn eigen schatting, nog na te vragen bij mijn vader. Het uurloon van 100 euro (bruto) heeft hij bevestigd. De uurkost is 100 × 1,5 = 150 euro.
 
 ## Waarde: hoeveel tijd wint de tool?
 
@@ -77,22 +77,22 @@ Alle tijden zijn realistische schattingen van mezelf (Frédéric), geen metingen
 | Winst per melding | **3,5 min** (alleen bij mijn vader; de 2 min van de chauffeur blijven gelijk) | |
 | Volume | 4 à 5 per week · 20 per maand · 240 per jaar | mijn schatting, nog na te vragen |
 | Uren gewonnen | 15,75 min per week · 70 min per maand · **14 u per jaar** | |
-| Uurkost | **100 euro** | bevestigd door mijn vader (zaakvoerder): wat een uur van hem het bedrijf kost |
-| Waarde | 14 × 100 = **1.400 euro per jaar** | |
+| Uurkost | **150 euro** = bruto uurloon 100 euro × 1,5 | uurloon bevestigd door mijn vader (zaakvoerder); factor 1,5 volgens de cursusregel |
+| Waarde | 14 × 150 = **2.100 euro per jaar** | |
 | Kost van de tool | 240 × 0,0042 dollar = ± 1 dollar = ~~± 0,91 euro per jaar~~ (gecorrigeerd in week 5, zie hierboven): **± 0,09 euro per jaar** | gemeten, prijs Haiku 5.5 uit de tabel van 21 oktober 2026 |
-| Netto | **± 1.400 euro per jaar** (was ± 1.399, gecorrigeerd in week 5) | |
+| Netto | **± 2.100 euro per jaar** (2.100 − 0,09), zonder herstel. Definitief: ± 1.500 tot 1.620, zie `value-chain.md` | |
 
 ## Mijn zwakste cijfer: het nakijken van 1 minuut
 
-Winst per melding = 5 min − 0,5 min (tool) − nakijktijd.
+Winst per melding = 5 min − 0,5 min (tool) − nakijktijd. Deze tabel rekent zonder herstel. Het definitieve bereik staat in `value-chain.md`.
 
 | Nakijken | Winst per melding | Uren per jaar | Netto per jaar |
 |---|---:|---:|---:|
-| 1 min | 3,5 min | 14 u | ± 1.399 euro |
-| 2 min | 2,5 min | 10 u | ± 999 euro |
-| 3 min | 1,5 min | 6 u | ± 599 euro |
-| 4 min | 0,5 min | 2 u | ± 199 euro |
-| 4,5 min | 0 min | 0 u | − 0,91 euro |
-| 5 min | −0,5 min | −2 u | ± − 201 euro |
+| 1 min | 3,5 min | 14 u | ± 2.100 euro |
+| 2 min | 2,5 min | 10 u | ± 1.500 euro |
+| 3 min | 1,5 min | 6 u | ± 900 euro |
+| 4 min | 0,5 min | 2 u | ± 300 euro |
+| 4,5 min | 0 min | 0 u | − 0,09 euro |
+| 5 min | −0,5 min | −2 u | − 300 euro |
 
 Het kantelpunt is 4,5 min nakijken. Daarboven kost de tool tijd. In mijn testset zat de tool niet altijd juist (zie `test-set.md`), dus 1 minuut nakijken is de schakel die ik het minst vertrouw.
